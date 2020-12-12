@@ -1009,32 +1009,14 @@ public class day2 {
                 "4-6 g: vslqbgg",
                 "9-16 d: dsdddddddrdddddhdbdd"
         };
+        partOne(input);
+        partTwo(input);
 
-        int PassValids = 0;
-        for (int i = 0; i < input.length; i++) {
-            String letter = input[i].substring(input[i].indexOf(" ") + 1, input[i].indexOf(":"));
-            String PassWord = input[i].substring(input[i].indexOf(":") + 1);
-
-            int min = parseInt(input[i].substring(0, input[i].indexOf("-")));
-            int max = parseInt(input[i].substring(input[i].indexOf("-") + 1, input[i].indexOf(" ")));
-
-            char letterAtMin = PassWord.charAt(min);
-            char letterAtMax = PassWord.charAt(max);
-
-
-            if(Character.toString(letterAtMin).equals(letter) != (Character.toString(letterAtMax).equals(letter))) {
-                PassValids++;
-            }
-        }
-
-        System.out.println(PassValids);
     }
 
-
-    private void partOne(String[] input) {
+    private static void partOne(String[] input) {
         int PassValids = 0;
         for (int i = 0; i < input.length; i++) {
-
 
             String before = input[i].substring(0, input[i].indexOf("-"));
             String after = input[i].substring(input[i].indexOf("-") + 1, input[i].indexOf(" "));
@@ -1051,7 +1033,6 @@ public class day2 {
 
                 PassValids = PassValids + 1;
 
-
             }
         }
 
@@ -1059,8 +1040,30 @@ public class day2 {
 
     }
 
+    private static void partTwo(String[] input) {
+
+        int PassValids = 0;
+        for (int i = 0; i < input.length; i++) {
+            String letter = input[i].substring(input[i].indexOf(" ") + 1, input[i].indexOf(":"));
+            String PassWord = input[i].substring(input[i].indexOf(":") + 1);
+
+            int min = parseInt(input[i].substring(0, input[i].indexOf("-")));
+            int max = parseInt(input[i].substring(input[i].indexOf("-") + 1, input[i].indexOf(" ")));
+
+            char letterAtMin = PassWord.charAt(min);
+            char letterAtMax = PassWord.charAt(max);
+
+
+            if (Character.toString(letterAtMin).equals(letter) != (Character.toString(letterAtMax).equals(letter))) {
+                PassValids++;
+            }
+        }
+
+        System.out.println(PassValids);
+    }
 
 }
+
 
 
 
