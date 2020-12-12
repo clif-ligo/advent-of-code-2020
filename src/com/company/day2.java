@@ -2,6 +2,8 @@ package com.company;
 
 import java.lang.reflect.Array;
 
+import static java.lang.Integer.parseInt;
+
 public class day2 {
     public static void main(String[] args) {
 
@@ -1010,19 +1012,22 @@ public class day2 {
 
         int PassValids = 0;
         for (int i = 0; i < input.length; i++) {
-
-
-            int Position1 = 0;
-            int Position2 = 0;
             String letter = input[i].substring(input[i].indexOf(" ") + 1, input[i].indexOf(":"));
-            String PassWord = input[i].substring(input[i].indexOf(":") + 1, input[i].length());
+            String PassWord = input[i].substring(input[i].indexOf(":") + 1);
 
-            int replace = PassWord.length() - PassWord.replace(letter, "").length();
+            int min = parseInt(input[i].substring(0, input[i].indexOf("-")));
+            int max = parseInt(input[i].substring(input[i].indexOf("-") + 1, input[i].indexOf(" ")));
+
+            char letterAtMin = PassWord.charAt(min);
+            char letterAtMax = PassWord.charAt(max);
 
 
-            char[] stringToCharArray = PassWord.toCharArray();
-
+            if(Character.toString(letterAtMin).equals(letter) != (Character.toString(letterAtMax).equals(letter))) {
+                PassValids++;
+            }
         }
+
+        System.out.println(PassValids);
     }
 
 
@@ -1038,8 +1043,8 @@ public class day2 {
 
             int replace = PassWord.length() - PassWord.replace(letter, "").length();
 
-            int convert = Integer.parseInt(before);
-            int convert2 = Integer.parseInt(after);
+            int convert = parseInt(before);
+            int convert2 = parseInt(after);
 
 
             if (replace >= convert && replace <= convert2) {
